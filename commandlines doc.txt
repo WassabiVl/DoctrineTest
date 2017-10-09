@@ -1,0 +1,4 @@
+Create Database
+    php bin/console doctrine:database:create
+Creating an Entity Class
+    php bin/console doctrine:schema:update --force

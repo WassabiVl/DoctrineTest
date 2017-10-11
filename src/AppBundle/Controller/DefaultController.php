@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/homepage", name="homepage")
      */
     public function indexAction(Request $request)
     {
@@ -31,9 +31,9 @@ class DefaultController extends Controller
 
         //In this section, you instantiate and work with the $product object like any other normal PHP object.
         $product = new Product();
-        $product->setName('Keyboard');
-        $product->setPrice(19.99);
-        $product->setDescription('Ergonomic and stylish!');
+        $product->setProductName('Keyboard');
+        $product->setProductPrice(19.99);
+        $product->setProductDescription('Ergonomic and stylish!');
 
         // tells Doctrine you want to (eventually) save the Product (no queries yet)
         // call tells Doctrine to "manage" the $product object.
@@ -61,15 +61,15 @@ class DefaultController extends Controller
     //Fetching Objects from the Database
     //Fetching an object back out of the database is even easier. For example, suppose you've
     // configured a route to display a specific Product based on its id value:
-    public function showAction($productId)
+    public function showAction($ProductID)
     {
-        //When you query for a particular type of object, you always use what's known as its "repository".
+        // When you query for a particular type of object, you always use what's known as its "repository".
         // You can think of a repository as a PHP class whose only job is to help you fetch entities of a certain class.
         // You can access the repository object for an entity class via:
         $product = $this->getDoctrine()
             ->getRepository(Product::class)
             // query for a single product by its primary key (usually "id")
-            ->find($productId);
+            ->find($ProductID);
 
         // dynamic method names to find a group of products based on a column value
         $products1 = $product->findByPrice(19.99);
@@ -90,7 +90,7 @@ class DefaultController extends Controller
 
         if (!$product) {
             throw $this->createNotFoundException(
-                'No product found for id '.$productId
+                'No product found for id '.$ProductID
             );
         }
 
@@ -111,7 +111,7 @@ class DefaultController extends Controller
             );
         }
 
-        $product->setName('New product name!');
+        $product->setProductName('New product name!');
         $em->flush();
 
         return $this->redirectToRoute('homepage');

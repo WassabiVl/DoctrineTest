@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <table class="border" width="40%" align="left" >
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody align="left">
+        {% for items in Products %}
+            <tr>
+                <td>{{ items.ProductName }}</td>
+                <td>{{ items.ProductPrice }}</td>
+                <td>{{ items.ProductDescription }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table class="border" width="40%" align="center">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody align="center">
+        {% for item in Users %}
+            <tr>
+                <td>{{ item.UserName }}</td>
+                <td>{{ item.UserEmail }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div style=" float:right; display: block; width:200px ">
+    <a href="{{ path('user_registration') }}" class="button">Register User</a><br>
+    <a href="{{ path('product_registration') }}" class="button">Add Product</a><br>
+    <a href="{{ path('user_registration') }}" class="button">Shopping Cart</a><br>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{# app/Resources/views/registration/register.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+{{ form_start(form) }}
+    {{ form_row(form.UserName) }}
+    {{ form_row(form.UserEmail) }}
+    {{ form_row(form.UserPassword.first) }}
+    {{ form_row(form.UserPassword.second) }}
+
+<button type="submit">Register!</button>
+{{ form_end(form) }}
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}

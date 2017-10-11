@@ -23,81 +23,65 @@ class Product
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
-    Protected  $productId;
+    Protected  $ProductID;
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    private $ProductName;
     /**
      * @ORM\Column(type="decimal", scale=2)
      */
-    private $price;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->productId;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->productId = $id;
-    }
+    private $ProductPrice;
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    private $ProductDescription;
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getProductName()
     {
-        return $this->name;
+        return $this->ProductName;
     }
 
     /**
-     * @param mixed $name
+     * @param string $ProductName
      */
-    public function setName($name)
+    public function setProductName($ProductName)
     {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
+        $this->ProductName = $ProductName;
     }
 
     /**
      * @return mixed
      */
-    public function getDescription()
+    public function getProductPrice()
     {
-        return $this->description;
+        return $this->ProductPrice;
     }
 
     /**
-     * @param mixed $description
+     * @param mixed $ProductPrice
      */
-    public function setDescription($description)
+    public function setProductPrice($ProductPrice)
     {
-        $this->description = $description;
+        $this->ProductPrice = $ProductPrice;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductDescription()
+    {
+        return $this->ProductDescription;
+    }
+
+    /**
+     * @param mixed $ProductDescription
+     */
+    public function setProductDescription($ProductDescription)
+    {
+        $this->ProductDescription = $ProductDescription;
     }
 
 

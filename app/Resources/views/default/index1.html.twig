@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <table class="border" width="40%" align="left" >
+    <table class="border" width="30%" align="left" >
         <thead>
         <tr>
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody align="left">
@@ -14,15 +16,19 @@
                 <td>{{ items.ProductName }}</td>
                 <td>{{ items.ProductPrice }}</td>
                 <td>{{ items.ProductDescription }}</td>
+                <td><a href="{{ path('ProductUpdate', {ProductID: items.ProductID}) }}" >Edit</a></td>
+                <td><a href="{{ path('ProductDel', {ProductID: items.ProductID}) }}" >Delete</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <table class="border" width="40%" align="center">
+    <table class="border" width="30%" align="center">
         <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody align="center">
@@ -30,14 +36,15 @@
             <tr>
                 <td>{{ item.UserName }}</td>
                 <td>{{ item.UserEmail }}</td>
+                <td><a href="{{ path('Update', {UserId: item.UserID}) }}" >Edit</a></td>
+                <td><a href="{{ path('Delete', {UserId: item.UserID}) }}" >Delete</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <div style=" float:right; display: block; width:200px ">
+    <div style="float:right; display: block; width:200px ">
     <a href="{{ path('user_registration') }}" class="button">Register User</a><br>
     <a href="{{ path('product_registration') }}" class="button">Add Product</a><br>
     <a href="{{ path('user_registration') }}" class="button">Shopping Cart</a><br>
     </div>
-
 {% endblock %}

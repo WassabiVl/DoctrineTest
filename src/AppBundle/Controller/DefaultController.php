@@ -1,8 +1,10 @@
 <?php
 
+
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -100,7 +102,13 @@ class DefaultController extends Controller
 
     // Updating an Object. nce you've fetched an object from Doctrine, updating it is easy.
     // Suppose you have a route that maps a product id to an update action in a controller:
-    public function updateAction($productId)
+    /**
+     * @Route("/blog/{id}")
+     * @ParamConverter("post", class="SensioBlogBundle:Post")
+     * @param $productId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function updateAction( $productId)
     {
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository(Product::class)->find($productId);

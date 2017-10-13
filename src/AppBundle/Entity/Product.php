@@ -10,6 +10,8 @@ namespace AppBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -26,16 +28,26 @@ class Product
     Protected  $ProductID;
     /**
      * @ORM\Column(type="string", length=100)
+     *  @Assert\NotBlank()
      */
     private $ProductName;
     /**
      * @ORM\Column(type="decimal", scale=2)
+     *
      */
     private $ProductPrice;
     /**
      * @ORM\Column(type="text")
      */
     private $ProductDescription;
+
+    /**
+     * @return mixed
+     */
+    public function getProductID()
+    {
+        return $this->ProductID;
+    }
     /**
      * @return string
      */

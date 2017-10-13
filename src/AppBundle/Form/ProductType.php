@@ -10,6 +10,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -22,6 +23,7 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('ProductID', HiddenType::class)
             ->add('ProductName', TextType::class)
             ->add('ProductPrice', MoneyType::class)
             ->add('ProductDescription', TextareaType::class)

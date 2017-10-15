@@ -19,19 +19,21 @@ class UserProductType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $product = new Product();
+        $product = $product->getProductName();
         $builder
             ->add('UserProductID', HiddenType::class)
             ->add('UserID', TextType::class)
-            ->add('ProductID', ChoiceType::class, [
-                'choices' => [
-                    new Product(),
-                ],
-                'choice_label' => function($Product, $key, $index) {
-                    /** @var Product $Product */
-                    return strtoupper($Product->getProductName());
-                },
-                ])
-//            ->add('ProductID', TextType::class)
+//            ->add('ProductID', ChoiceType::class, array(
+//                'entry_options'  => array(
+//                'choices' =>
+//                    $product
+//                ,
+//                'choice_label' => function($Product, $key, $index) {
+//                    /** @var Product $Product */
+//                    return strtoupper($Product->getProductName());
+//                },)))
+            ->add('ProductID', TextType::class)
             ->add('PurchaseDate',DateTimeType::class)
             ->add('Amount', TextType::class);
     }

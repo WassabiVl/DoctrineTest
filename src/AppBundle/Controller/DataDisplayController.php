@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: al-atrash
+ * UserOld: al-atrash
  * Date: 11/10/2017
  * Time: 13:11
  */
@@ -9,7 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
-use AppBundle\Entity\User;
+use AppBundle\Entity\UserOld;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Cache\Simple\FilesystemCache;
@@ -43,7 +43,7 @@ class DataDisplayController extends Controller
         $cache = new FilesystemCache();
         if (!$cache->has('stats.users')) {
             $users = $this->getDoctrine()
-                ->getRepository(User::class)
+                ->getRepository(UserOld::class)
                 ->findAll()
             ;
             $cache->set('stats.users', $users);
@@ -51,7 +51,7 @@ class DataDisplayController extends Controller
             $users = $cache->get('stats.users');
         }
 //        $users = $this->getDoctrine()
-//            ->getRepository(User::class)
+//            ->getRepository(UserOld::class)
 //            ->findAll();
 
         if (!$product or !$users) {

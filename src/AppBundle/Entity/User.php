@@ -1,181 +1,45 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: al-atrash
- * Date: 11/10/2017
- * Time: 08:54
- */
+ * Created by IntelliJ IDEA.
+ * UserOld: Wassabi.vl
+ * Date: 10/14/2017
+ * Time: 12:56 PM
+ *Login 127.0.0.1:8000/app_dev.php/login
+*/
 
 namespace AppBundle\Entity;
 
-
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
- * @UniqueEntity(fields="UserEmail", message="Email already taken")
- * @UniqueEntity(fields="UserName", message="Username already taken")
+ * @ORM\Table(name="fos_user")
  */
-class User implements UserInterface
+class User extends BaseUser
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $UserID;
+    protected $id;
     /**
-     * @ORM\Column(type="string")
-     */
-    private $UserName;
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    private $UserPassword;
-    /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    private $UserEmail;
-
-    /**
-     * @return mixed
-     */
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    /**
-     * @param mixed $plainPassword
-     */
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserID()
-    {
-        return $this->UserID;
-    }
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-
-    /**
-     * @return mixed
-     */
-    public function getUserName()
-    {
-        return $this->UserName;
-    }
-
-    /**
-     * @param mixed $UserName
-     */
-    public function setUserName($UserName)
-    {
-        $this->UserName = $UserName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserPassword()
-    {
-        return $this->UserPassword;
-    }
-
-    /**
-     * @param mixed $UserPassword
-     */
-    public function setUserPassword($UserPassword)
-    {
-        $this->UserPassword = $UserPassword;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserEmail()
-    {
-        return $this->UserEmail;
-    }
-
-    /**
-     * @param mixed $UserEmail
-     */
-    public function setUserEmail($UserEmail)
-    {
-        $this->UserEmail = $UserEmail;
-    }
-
-    /**
-     * Returns the roles granted to the user.
+     * @ORM\Column(type="string", length=255)
      *
-     * <code>
-     * public function getRoles()
-     * {
-     *     return array('ROLE_USER');
-     * }
-     * </code>
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return (Role|string)[] The user roles
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
-    public function getRoles()
-    {
-        // TODO: Implement getRoles() method.
-    }
+    protected $name;
 
-    /**
-     * Returns the password used to authenticate the user.
-     *
-     * This should be the encoded password. On authentication, a plain-text
-     * password will be salted, encoded, and then compared to this value.
-     *
-     * @return string The password
-     */
-    public function getPassword()
+    public function __construct()
     {
-        // TODO: Implement getPassword() method.
-        return $this->UserPassword;
-    }
-
-    /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
-     */
-    public function getSalt()
-    {
-        // TODO: Implement getSalt() method.
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
-     */
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
+        parent::__construct();
+        // your own logic
     }
 }

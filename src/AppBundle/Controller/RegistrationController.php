@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: al-atrash
+ * UserOld: al-atrash
  * Date: 11/10/2017
  * Time: 09:45
  */
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\UserType;
-use AppBundle\Entity\User;
+use AppBundle\Form\UserTypeOld;
+use AppBundle\Entity\UserOld;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,8 +30,8 @@ class RegistrationController extends Controller
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         // 1) build the form
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $user = new UserOld();
+        $form = $this->createForm(UserTypeOld::class, $user);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
@@ -41,7 +41,7 @@ class RegistrationController extends Controller
             $password = $passwordEncoder->encodePassword($user, $user->getUserPassword());
             $user->setUserPassword($password);
 
-            // 4) save the User!
+            // 4) save the UserOld!
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -70,14 +70,14 @@ class RegistrationController extends Controller
     public function updateAction($UserId, UserPasswordEncoderInterface $passwordEncoder, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($UserId);
+        $user = $em->getRepository(UserOld::class)->find($UserId);
 
         if (!$user) {
             throw $this->createNotFoundException(
                 'No product found for id '.$user
             );
         }
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserTypeOld::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -85,7 +85,7 @@ class RegistrationController extends Controller
             $password = $passwordEncoder->encodePassword($user, $user->getUserPassword());
             $user->setUserPassword($password);
 
-            // 4) save the User!
+            // 4) save the UserOld!
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -109,21 +109,21 @@ class RegistrationController extends Controller
     public function deleteAction($UserId, UserPasswordEncoderInterface $passwordEncoder, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($UserId);
+        $user = $em->getRepository(UserOld::class)->find($UserId);
 
         if (!$user) {
             throw $this->createNotFoundException(
                 'No product found for id '.$user
             );
         }
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserTypeOld::class, $user);
         $form->handleRequest($request);
 
         // 3) Encode the password (you could also do this via Doctrine listener)
         $password = $passwordEncoder->encodePassword($user, $user->getUserPassword());
         $user->setUserPassword($password);
 
-        // 4) save the User!
+        // 4) save the UserOld!
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();

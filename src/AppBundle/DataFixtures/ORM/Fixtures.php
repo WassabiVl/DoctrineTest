@@ -1,15 +1,19 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: al-atrash
+ * UserOld: al-atrash
  * Date: 13/10/2017
  * Time: 10:49
+ *
+ * to run, if the first time disable UP
+ * php bin/console doctrine:fixtures:load --append
+ * https://symfony.com/doc/master/bundles/DoctrineFixturesBundle/index.html
  */
 
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Product;
-use AppBundle\Entity\User;
+use AppBundle\Entity\UserOld;
 use AppBundle\Entity\UserProduct;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -25,7 +29,7 @@ class Fixtures extends Fixture
             $product->setProductName('product '.$i);
             $product->setProductPrice(mt_rand(10, 100));
             $product->setProductDescription('description '.$i);
-            $users = new User();
+            $users = new UserOld();
             $users->setUserName('name'.$i);
             $users->setUserEmail('user'.$i.'@user.com');
             $users->setUserPassword(mt_rand(10, 100));

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: al-atrash
+ * UserOld: al-atrash
  * Date: 11/10/2017
  * Time: 09:39
  */
@@ -9,7 +9,7 @@
 namespace AppBundle\Form;
 
 
-use AppBundle\Entity\User;
+use AppBundle\Entity\UserOld;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -21,7 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 
-class UserType extends AbstractType
+class UserTypeOld extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -42,7 +42,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => User::class,
+            'data_class' => UserOld::class,
         ));
     }
 }

@@ -31,6 +31,7 @@ class ProductController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
+            $this->addFlash('success', 'Product Created!');
             return $this->redirectToRoute('home');
         }
         return $this->render(
@@ -61,7 +62,9 @@ class ProductController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
+            $this->addFlash('success', 'Product Updated!');
             return $this->redirectToRoute('home');
+
         }
         // ... do any other work - like sending them an email, etc
         // maybe set a "flash" success message for the user
@@ -92,6 +95,7 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($product);
         $em->flush();
+        $this->addFlash('success', 'Product Deleted!');
         return $this->redirectToRoute('home');
     }
 }

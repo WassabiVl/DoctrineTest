@@ -27,6 +27,7 @@ class ProductType extends AbstractType
             ->add('ProductName', TextType::class)
             ->add('ProductPrice', MoneyType::class)
             ->add('ProductDescription', TextareaType::class)
+            ->add('CategoryName')
         ;
     }
     public function configureOptions(OptionsResolver $resolver)

@@ -6,6 +6,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
+            <th>Category</th>
             <th></th>
             <th></th>
         </tr>
@@ -16,6 +17,7 @@
                 <td>{{ items.ProductName }}</td>
                 <td>{{ items.ProductPrice }}</td>
                 <td>{{ items.ProductDescription }}</td>
+                <td>{{ items.CategoryName }}</td>
                 <td><a href="{{ path('ProductUpdate', {ProductID: items.ProductID}) }}" >Edit</a></td>
                 <td><a href="{{ path('ProductDel', {ProductID: items.ProductID}) }}" >Delete</a></td>
             </tr>

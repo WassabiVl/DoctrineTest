@@ -3,7 +3,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Product;
+use AppBundle\Entity\Category;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,7 +34,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         //In this section, you instantiate and work with the $product object like any other normal PHP object.
-        $product = new Product();
+        $product = new Category();
         $product->setProductName('Keyboard');
         $product->setProductPrice(19.99);
         $product->setProductDescription('Ergonomic and stylish!');
@@ -71,7 +71,7 @@ class DefaultController extends Controller
         // You can think of a repository as a PHP class whose only job is to help you fetch entities of a certain class.
         // You can access the repository object for an entity class via:
         $product = $this->getDoctrine()
-            ->getRepository(Product::class)
+            ->getRepository(Category::class)
             // query for a single product by its primary key (usually "id")
             ->find($ProductID);
 
@@ -113,7 +113,7 @@ class DefaultController extends Controller
     public function updateAction( $productId)
     {
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository(Product::class)->find($productId);
+        $product = $em->getRepository(Category::class)->find($productId);
 
         if (!$product) {
             throw $this->createNotFoundException(
@@ -130,7 +130,7 @@ class DefaultController extends Controller
     public function deleteAction($productId)
     {
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository(Product::class)->find($productId);
+        $product = $em->getRepository(Category::class)->find($productId);
 
 
         if (!$product) {
@@ -151,7 +151,7 @@ class DefaultController extends Controller
         // you select from the AppBundle:Product entity (an optional shortcut for the AppBundle\Entity\Product class)
         // and then alias it as p.
         $em = $this->getDoctrine()
-            ->getRepository(Product::class)
+            ->getRepository(Category::class)
             // query for a single product by its primary key (usually "id")
             ->find($productId);
 

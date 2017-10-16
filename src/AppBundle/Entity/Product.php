@@ -49,7 +49,7 @@ class Product
 
     /**
      * @ORM\Column(type="string")
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(nullable=false )
      */
     private $CategoryName;

@@ -1,29 +1,29 @@
 <?php
 /**
  * Created by PhpStorm.
- * UserOld: al-atrash
- * Date: 11/10/2017
- * Time: 14:53
+ * User: al-atrash
+ * Date: 16/10/2017
+ * Time: 15:02
  */
 
 namespace AppBundle\Controller;
 
 
-use AppBundle\Form\ProductType;
-use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Form\ProductType;
+use AppBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     /**
-     * @Route("/product", name="product_registration")
+     * @Route("/category", name="category_registration")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request){
-        $product = new Product();
+        $product = new Category();
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
@@ -42,11 +42,14 @@ class ProductController extends Controller
 
     /**
      * @Route("/Product/{ProductID}", name = "ProductUpdate")
+     * @param $ProductID
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function updateAction(Product $product, Request $request)
+    public function updateAction($ProductID, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository(Category::class)->find($ProductID);
 
         if (!$product) {
             throw $this->createNotFoundException(
@@ -80,7 +83,7 @@ class ProductController extends Controller
     public function deleteAction($ProductID, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository(Product::class)->find($ProductID);
+        $product = $em->getRepository(Category::class)->find($ProductID);
 
         if (!$product) {
             throw $this->createNotFoundException(

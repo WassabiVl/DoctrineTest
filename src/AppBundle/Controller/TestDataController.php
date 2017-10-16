@@ -9,7 +9,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Product;
+use AppBundle\Entity\Category;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -25,7 +25,7 @@ class TestDataController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function displayData(){
-            $Product = new Product();
+            $Product = new Category();
             $form = $this ->createFormBuilder($Product)
                 ->add('Products', CollectionType::class, array(
                     'ProductID' => HiddenType::class,

@@ -135,7 +135,6 @@ class UserOld implements UserInterface
      * and populated in any number of different ways when the user object
      * is created.
      *
-     * @return (Role|string)[] The user roles
      */
     public function getRoles()
     {
@@ -178,4 +177,5 @@ class UserOld implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
 }

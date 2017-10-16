@@ -4,6 +4,7 @@
  * UserOld: al-atrash
  * Date: 11/10/2017
  * Time: 13:11
+ *  https://symfony.com/doc/master/components/cache.html
  */
 
 namespace AppBundle\Controller;
@@ -29,39 +30,32 @@ class DataDisplayController extends Controller
      */
     public function showAction()
     {
-        $cachedCategories = $this->get('cache.app')
-            ->getItem('product');
-        if (!$cachedCategories->isHit()) { //if not found
+        $product=array();
+        $users=array();
+        $cache = new FilesystemCache();
+        if (!$cache->has('stats.products') or !$cache->has('stats.users')) {
             $product = $this->getDoctrine()
                 ->getRepository(Product::class)
                 ->findAll();
-            $cachedCategories->set($product);
-            $this->get('cache.app')->save($cachedCategories);
-        } else {
-            $product = $cachedCategories->get();
-        }
-        $cache = new FilesystemCache();
-        if (!$cache->has('stats.users')) {
             $users = $this->getDoctrine()
                 ->getRepository(UserOld::class)
-                ->findAll()
-            ;
-            $cache->set('stats.users', $users);
-        }else {
+                ->findAll();
+            $cache->set('stats.products', $product);
+            $cache->set('stats.users', $users);}
+        else{
             $users = $cache->get('stats.users');
+            $product = $cache->get('stats.products');
         }
-//        $users = $this->getDoctrine()
-//            ->getRepository(UserOld::class)
-//            ->findAll();
 
-        if (!$product or !$users) {
+        if (!$product and !$users) {
             throw $this->createNotFoundException(
-                'No product found for id '
-            );
-        }
+                'No product found for id ');}
+
+        $cache->clear();
 
         // ... do something, like pass the $product object into a template
         return $this->render('default/index1.html.twig', array('Products' => $product, 'Users' => $users));
+
     }
 
 

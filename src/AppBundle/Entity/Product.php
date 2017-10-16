@@ -57,6 +57,14 @@ class Product
     }
 
     /**
+     * @param mixed $ProductID
+     */
+    public function setProductID($ProductID)
+    {
+        $this->ProductID = $ProductID;
+    }
+
+    /**
      * @param string $ProductName
      */
     public function setProductName($ProductName)

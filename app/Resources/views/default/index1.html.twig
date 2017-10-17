@@ -18,8 +18,8 @@
                 <td>{{ items.ProductPrice }}</td>
                 <td>{{ items.ProductDescription }}</td>
                 <td>{{ items.CategoryName }}</td>
-                <td><a href="{{ path('ProductUpdate', {ProductID: items.ProductID}) }}" >Edit</a></td>
-                <td><a href="{{ path('ProductDel', {ProductID: items.ProductID}) }}" >Delete</a></td>
+                <td><a href="{{ path('product_update', {ProductID: items.ProductID}) }}" >Edit</a></td>
+                <td><a href="{{ path('product_del', {ProductID: items.ProductID}) }}" >Delete</a></td>
             </tr>
         {% endfor %}
         </tbody>

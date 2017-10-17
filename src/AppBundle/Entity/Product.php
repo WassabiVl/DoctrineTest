@@ -133,5 +133,8 @@ class Product
         $this->ProductDescription = $ProductDescription;
     }
 
-
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+    }
 }

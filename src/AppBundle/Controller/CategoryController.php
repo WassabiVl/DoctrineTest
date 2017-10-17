@@ -41,7 +41,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/Product/{ProductID}", name = "ProductUpdate")
+     * @Route("/category/{categoryID}", name = "categoryUpdate")
      * @param $ProductID
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -75,7 +75,7 @@ class CategoryController extends Controller
 
     }
     /**
-     * @Route("/ProductDel/{ProductID}", name = "ProductDel")
+     * @Route("/categoryDel/{categoryID}", name = "categoryDel")
      * @param $ProductID
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response

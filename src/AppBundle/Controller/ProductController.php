@@ -41,7 +41,8 @@ class ProductController extends Controller
     }
 
     /**
-     * @Route("/Product/{ProductID}", name = "ProductUpdate")
+     * @Route("/Product/{ProductID}", name = "product_update")
+     * @param Product $product
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -71,16 +72,18 @@ class ProductController extends Controller
         );
 
     }
+
     /**
-     * @Route("/ProductDel/{ProductID}", name = "ProductDel")
-     * @param $ProductID
+     * @Route("/ProductDel/{ProductID}", name = "product_del")
+     * @param Product $product
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction($ProductID, Request $request)
+    public function deleteAction(Product $product, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository(Product::class)->find($ProductID);
+//        $em = $this->getDoctrine()->getManager();
+//        $product = $em->getRepository(Product::class)->find($ProductID);
+        // because we included Product $product, symfony now recognizes which ID is needed to be made and called
 
         if (!$product) {
             throw $this->createNotFoundException(

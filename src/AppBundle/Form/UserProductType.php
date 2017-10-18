@@ -2,6 +2,9 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Product;
+use AppBundle\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -21,8 +24,12 @@ class UserProductType extends AbstractType
 
         $builder
             ->add('UserProductID', HiddenType::class)
-            ->add('UserID', TextType::class)
-            ->add('ProductID', TextType::class)
+            ->add('UserID', EntityType::class, [
+                'class' => User::class
+            ])
+            ->add('ProductID', EntityType::class, [
+                'class' => Product::class
+            ])
             ->add('PurchaseDate',DateTimeType::class)
             ->add('Amount', TextType::class);
     }

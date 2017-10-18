@@ -20,18 +20,29 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class Fixtures extends Fixture
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
+        $fixtureData= new FixtureData;
+        $categoryData=$fixtureData->getCategories();
+        $productsData=$fixtureData->getProducts();
+        $nameData =$fixtureData->getNames();
         // create 20 products! Bam!
         $time= new \DateTime("now");
         for ($i = 0; $i < 20; $i++) {
+            $Name1 = array_rand(array_flip($nameData), 2);
+            $nameDate= $Name1[0]. ' '. $Name1[1];
+            $nameEmail = $Name1[0]. '.'. $Name1[1];
             $product = new Product();
-            $product->setProductName('product '.$i);
+            $product->setProductName(array_rand(array_flip($productsData)));
             $product->setProductPrice(mt_rand(10, 100));
             $product->setProductDescription('description '.$i);
+            $product->setCategoryID(array_rand($categoryData));
             $users = new UserOld();
-            $users->setUserName('name'.$i);
-            $users->setUserEmail('user'.$i.'@user.com');
+            $users->setUserName($nameDate);
+            $users->setUserEmail($nameEmail.'@user.com');
             $users->setUserPassword(mt_rand(10, 100));
             $UP = new UserProduct();
             $UP->setAmount(mt_rand(10, 100));

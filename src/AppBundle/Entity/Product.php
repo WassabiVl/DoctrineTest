@@ -4,6 +4,9 @@
  * UserOld: al-atrash
  * Date: 09/10/2017
  * Time: 15:30
+ *
+ * create the initial table with its values, or keys
+ * make sue each key is the specified type of format
  */
 
 namespace AppBundle\Entity;
@@ -11,10 +14,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\Category;
 
 
 /**
+ * set the data type... the Entity from ORM
+ * and set the table name 'Entity'
+ *
+ *
  * @ORM\Entity
  * @ORM\Table(name="product")
  *
@@ -50,7 +56,6 @@ class Product
     /**
      * @ORM\Column(type="string")
      * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(nullable=false )
      */
     private $CategoryName;
 
@@ -69,6 +74,8 @@ class Product
     {
         $this->CategoryName = $CategoryName;
     }
+
+
 
     /**
      * @return mixed
@@ -135,6 +142,7 @@ class Product
 
     public function __toString()
     {
+        return $this->getProductName();
         // TODO: Implement __toString() method.
     }
 }

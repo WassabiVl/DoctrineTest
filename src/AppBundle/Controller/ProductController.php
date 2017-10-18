@@ -48,11 +48,9 @@ class ProductController extends Controller
      */
     public function updateAction(Product $product, Request $request)
     {
-
         if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$product
-            );
+            $this->addFlash('Failure', 'Product not found');
+            return $this->redirectToRoute('home');
         }
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -95,7 +93,7 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($product);
         $em->flush();
-        $this->addFlash('success', 'Product Deleted!');
+        $this->addFlash('Success', 'Product Deleted!');
         return $this->redirectToRoute('home');
     }
 }

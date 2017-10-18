@@ -8,12 +8,9 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -31,9 +28,10 @@ class ProductType extends AbstractType
             ->add('ProductName', TextType::class)
             ->add('ProductPrice', MoneyType::class)
             ->add('ProductDescription', TextareaType::class)
-            ->add('CategoryName', EntityType::class, [
-                'class' => Category::class
-            ])
+            ->add('CategoryName', EntityType::class, array(
+                'class' => 'AppBundle:Category',
+                'choice_label' => 'CategoryName'
+            ))
         ;
     }
     public function configureOptions(OptionsResolver $resolver)

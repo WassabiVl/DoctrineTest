@@ -24,6 +24,7 @@ class ShopCartController extends Controller
      */
     public function registerAction(Request $request){
         $product = new UserProduct();
+        $product->setUserID($this->getUser());
         $form = $this->createForm(UserProductType::class, $product);
 
         $form->handleRequest($request);

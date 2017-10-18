@@ -9,6 +9,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\UserOld;
 use AppBundle\Entity\UserProduct;
@@ -46,7 +47,7 @@ class DataDisplayController extends Controller
                 ->getRepository(UserProduct::class)
                 ->findAll();
             $category = $this->getDoctrine()
-                ->getRepository(UserProduct::class)
+                ->getRepository(Category::class)
                 ->findAll();
             $cache->set('stats.products', $product);
             $cache->set('stats.users', $users);

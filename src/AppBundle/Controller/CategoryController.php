@@ -10,7 +10,7 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Form\ProductType;
+use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,79 +23,73 @@ class CategoryController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request){
-        $product = new Category();
-        $form = $this->createForm(ProductType::class, $product);
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
+            $em->persist($category);
             $em->flush();
-            $this->addFlash('success', 'Product Created!');
+            $this->addFlash('success', 'Category Created!');
             return $this->redirectToRoute('home');
         }
         return $this->render(
-            'registration/Product.html.twig',
+            'registration/Category.html.twig',
             array('form' => $form->createView())
         );
     }
 
     /**
-     * @Route("/category/{categoryID}", name = "categoryUpdate")
-     * @param $ProductID
+     * @Route("/category/{categoryID}", name = "category_update")
+     * @param $category
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function updateAction($ProductID, Request $request)
+    public function updateAction(Category $category, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository(Category::class)->find($ProductID);
-
-        if (!$product) {
+        if (!$category) {
             throw $this->createNotFoundException(
-                'No product found for id '.$product
+                'No category found for id '.$category
             );
         }
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(categoryType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
+            $em->persist($category);
             $em->flush();
-            $this->addFlash('success', 'Product Updated!');
+            $this->addFlash('success', 'category Updated!');
             return $this->redirectToRoute('home');
 
         }
         // ... do any other work - like sending them an email, etc
         // maybe set a "flash" success message for the user
         return $this->render(
-            'registration/Product.html.twig',
+            'registration/Category.html.twig',
             array('form' => $form->createView())
         );
 
     }
     /**
      * @Route("/categoryDel/{categoryID}", name = "categoryDel")
-     * @param $ProductID
+     * @param $category
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction($ProductID, Request $request)
+    public function deleteAction(Category $category, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository(Category::class)->find($ProductID);
-
-        if (!$product) {
+        if (!$category) {
             throw $this->createNotFoundException(
-                'No product found for id '.$product
+                'No category found for id '.$category
             );
         }
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(categoryType::class, $category);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
-        $em->remove($product);
+        $em->remove($category);
         $em->flush();
-        $this->addFlash('success', 'Product Deleted!');
+        $this->addFlash('success', 'category Deleted!');
         return $this->redirectToRoute('home');
     }
 }

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ form_start(form) }}
-    {{ form_row(form.UserID) }}
-    {{ form_row(form.ProductID) }}
-    {{ form_row(form.PurchaseDate) }}
+    {{ form_row(form.UserID, {'label': 'User Name'}) }}
+    {{ form_row(form.ProductID, {'label': 'Product Name'}) }}
+    {{ form_row(form.PurchaseDate, {'label': 'Date'}) }}
     {{ form_row(form.Amount) }}
 
     <button type="submit">Add Product</button>

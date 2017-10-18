@@ -34,6 +34,7 @@ class Category
      */
     private $CategoryName;
 
+
     /**
      * @return mixed
      */

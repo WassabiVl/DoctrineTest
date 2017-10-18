@@ -140,9 +140,9 @@
       <DataType>longtext|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="10" name="category_name">
+    <column id="39" parent="10" name="category_id">
       <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="40" parent="10" name="PRIMARY">

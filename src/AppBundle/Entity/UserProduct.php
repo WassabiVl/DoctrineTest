@@ -32,14 +32,14 @@ class UserProduct
      */
     protected $UserProductID;
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="UserID")
-     * @ORM\JoinColumn(name="UserID", referencedColumnName="UserID")
+     * @ORM\ManyToOne(targetEntity="UserOld")
+     * @ORM\JoinColumn(nullable=false)
      * @ORM\Column(type="integer")
      */
     public $UserID;
     /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="Product")
-     * @ORM\JoinColumn(name="ProductID", referencedColumnName="ProductID")
+     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\JoinColumn(nullable=false)
      * @ORM\Column(type="integer")
      */
     public $ProductID;
@@ -57,6 +57,8 @@ class UserProduct
     {
         $this->UserID = new ArrayCollection();
         $this->ProductID = new ArrayCollection();
+        //to set the date to now
+        $this->PurchaseDate = new \DateTime();
     }
 
     /**

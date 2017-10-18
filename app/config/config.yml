@@ -35,6 +35,7 @@ framework:
         log: true
 
 
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
@@ -64,10 +65,10 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
+    transport: gmail
+    host: smtp.gmail.com
+    username: wassabi.vl@gmail.com
+    password: Waela@1234
     spool: { type: memory }
 
 doctrine_cache:
@@ -80,7 +81,7 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-           address: "Wael"
-           sender_name: "Wael"
+           address: "wassabi.vl@gmail.com "
+           sender_name: "wassabi.vl"
 
 

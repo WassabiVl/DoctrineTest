@@ -14,21 +14,66 @@
         {% endblock %}
     </head>
     <body>
-    <div class="search-bar">
-        <form method="GET" action="" class="js-sea-search sea-search">
-            <input type="search" name="q" placeholder="Search Sea Creatures" autocomplete="off" class="search-input">
-        </form>
-    </div>
-    <header class="header">
-        <ul class="navi">
-            {% if is_granted('ROLE_USER') and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-                <li><a href="{{ path('fos_user_security_logout') }}"> Logout</a></li>
-            {% else %}
-                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-            {% endif %}
-        </ul>
-    </header>
+    {% block header %}
+        <header class="header">
+            <div class="navi" role="navigation">
+                <div class="container">
+                    <div class="navbar-header col-md-3 col-lg-2">
+                        <a class="navbar-brand" href="{{ path('home') }}">
+                            Symfony Demo
+                        </a>
+
+                        <button type="button" class="navbar-toggle"
+                                data-toggle="collapse"
+                                data-target=".navbar-collapse">
+                            <span class="sr-only">{{ 'menu.toggle_nav'|trans }}</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            {% block header_navigation_links %}
+                               {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')%}
+                                    <li>
+                                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                        <a href="{{ path('home') }}">
+                                            <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
+                                        </a>
+                                    </li>
+                                   <li><a href="{{ path('fos_user_security_logout') }}"> Logout</a></li>
+                               {% else %}
+                                   <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                                {% endif %}
+                            {% endblock %}
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    <span class="caret"></span>
+                                    <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+    {% endblock %}
+
+    {#<header class="header">#}
+        {#<ul class="navi">#}
+            {#{% if is_granted('ROLE_USER') and is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
+                {#{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}#}
+                {#<li><a href="{{ path('fos_user_security_logout') }}"> Logout</a></li>#}
+            {#{% else %}#}
+                {#<li><a href="{{ path('fos_user_security_login') }}">Login</a></li>#}
+            {#{% endif %}#}
+        {#</ul>#}
+    {#</header>#}
     {% for msg in app.session.flashBag.get('success') %}
         <div class="alert alert-success">
             {{ msg }}

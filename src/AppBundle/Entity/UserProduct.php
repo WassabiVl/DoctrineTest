@@ -32,13 +32,13 @@ class UserProduct
      */
     protected $UserProductID;
     /**
-     * @ORM\ManyToOne(targetEntity="UserOld")
+     * @ORM\ManyToMany(targetEntity="UAppBundle\Entity\serOld")
      * @ORM\JoinColumn(nullable=false)
      * @ORM\Column(type="integer")
      */
     public $UserID;
     /**
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Product")
      * @ORM\JoinColumn(nullable=false)
      * @ORM\Column(type="integer")
      */

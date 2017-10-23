@@ -32,11 +32,12 @@ var NoteSection = React.createClass({
     }
 });
 
-var NoteList = React.createClass({
-    render: function() {
-        var noteNodes = this.props.notes.map(function(note) {
+const NoteList = React.createClass({
+    render: function () {
+        let noteNodes = this.props.notes.map(function (note) {
             return (
-                <NoteBox username={note.username} avatarUri={note.avatarUri} date={note.date} key={note.id}>{note.note}</NoteBox>
+                <NoteBox username={note.username} avatarUri={note.avatarUri} date={note.date}
+                         key={note.id}>{note.note}</NoteBox>
             );
         });
 
@@ -48,12 +49,12 @@ var NoteList = React.createClass({
     }
 });
 
-var NoteBox = React.createClass({
-    render: function() {
+const NoteBox = React.createClass({
+    render: function () {
         return (
             <div className="cd-timeline-block">
                 <div className="cd-timeline-img">
-                    <img src={this.props.avatarUri} className="img-circle" alt="Leanna!" />
+                    <img src={this.props.avatarUri} className="img-circle" alt="Leanna!"/>
                 </div>
                 <div className="cd-timeline-content">
                     <h2><a href="#">{this.props.username}</a></h2>

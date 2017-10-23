@@ -39,7 +39,7 @@ class Fixtures extends Fixture
             $product->setProductName(array_rand(array_flip($productsData)));
             $product->setProductPrice(mt_rand(10, 100));
             $product->setProductDescription('description '.$i);
-            $product->setCategoryID(array_rand($categoryData));
+            $product->setCategoryName( array_rand(array_flip($categoryData)));
             $users = new UserOld();
             $users->setUserName($nameDate);
             $users->setUserEmail($nameEmail.'@user.com');

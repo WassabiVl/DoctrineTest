@@ -12,6 +12,7 @@
 namespace AppBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -55,7 +56,7 @@ class Product
 
     /**
      * @ORM\Column(type="string")
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
      */
     private $CategoryName;
 
@@ -74,8 +75,6 @@ class Product
     {
         $this->CategoryName = $CategoryName;
     }
-
-
 
     /**
      * @return mixed
@@ -144,5 +143,9 @@ class Product
     {
         return $this->getProductName();
         // TODO: Implement __toString() method.
+    }
+    public function __construct()
+    {
+        $this->CategoryName = new ArrayCollection();
     }
 }

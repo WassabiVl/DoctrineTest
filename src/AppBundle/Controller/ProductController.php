@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\ProductType;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,6 +53,7 @@ class ProductController extends Controller
             $this->addFlash('Failure', 'Product not found');
             return $this->redirectToRoute('home');
         }
+        $product->setCategoryName($product);
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -79,17 +81,13 @@ class ProductController extends Controller
      */
     public function deleteAction(Product $product, Request $request)
     {
-//        $em = $this->getDoctrine()->getManager();
-//        $product = $em->getRepository(Product::class)->find($ProductID);
-        // because we included Product $product, symfony now recognizes which ID is needed to be made and called
 
         if (!$product) {
             throw $this->createNotFoundException(
                 'No product found for id '.$product
             );
         }
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($product);
         $em->flush();

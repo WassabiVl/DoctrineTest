@@ -21,8 +21,8 @@ class F0sUserFixture extends Fixture
         for ($i = 0; $i < 20; $i++) {
         // Create our user and set details
         $user = $userManager->createUser();
-        $user->setUsername('username'.$i);
-        $user->setEmail('email'.$i.'@domain.com');
+        $user->setUsername('username+'.$i);
+        $user->setEmail('email+'.$i.'@domain.com');
         $user->setPlainPassword('password');
         //$user->setPassword('3NCRYPT3D-V3R51ON');
         $user->setEnabled(true);

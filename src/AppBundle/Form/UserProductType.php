@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\Category;
 
@@ -23,7 +25,7 @@ class UserProductType extends AbstractType
     {
 
         $builder
-            ->add('UserProductID', HiddenType::class)
+//            ->add('UserProductID', HiddenType::class)
             ->add('UserID', EntityType::class, [
                 'class' => User::class
             ])
@@ -31,7 +33,20 @@ class UserProductType extends AbstractType
                 'class' => Product::class
             ])
             ->add('PurchaseDate',DateTimeType::class)
-            ->add('Amount', TextType::class);
+            ->add('Amount', TextType::class)
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+                $UserProduct = $event->getData();
+                $form = $event->getForm();
+
+                // check if the Product object is "new"
+                // If no data is passed to the form, the data is "null".
+                // This should be considered a new "Product"
+                if (!$UserProduct || null === $UserProduct->getUserProductID()) {
+                    $form->add('UserProductID', HiddenType::class);
+                }
+            });
+        ;
+
     }
 
     /**

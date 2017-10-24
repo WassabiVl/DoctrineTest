@@ -101,6 +101,8 @@ class TaskController extends Controller
             return $this->redirectToRoute('task_edit', array('id' => $id));
         }
 
-        // render some form template
-    }
+        return $this->render(
+            'task/new.html.twig',
+            array('form' => $form->createView())
+        );    }
 }

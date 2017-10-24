@@ -30,7 +30,7 @@ class TaskType extends AbstractType
                 'by_reference' => false,
                 'prototype' => true,
                 'attr' => array(
-                    'class' => 'Tag',
+                    'class' => 'my-selector',
                 ),
         ));
     }

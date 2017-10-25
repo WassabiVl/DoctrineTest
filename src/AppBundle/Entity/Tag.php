@@ -88,6 +88,11 @@ class Tag
         $this->tasks = $tasks;
     }
 
+    /**
+     * @param \AppBundle\Entity\Task $task
+     * @return mixed
+     */
+
 
     //multiform shit to do here
     public function addTask(Task $task)

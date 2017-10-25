@@ -76,6 +76,38 @@ class Task
     /**
      * @return mixed
      */
+    public function getTaskDescription()
+    {
+        return $this->TaskDescription;
+    }
+
+    /**
+     * @param mixed $TaskDescription
+     */
+    public function setTaskDescription($TaskDescription)
+    {
+        $this->TaskDescription = $TaskDescription;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCategory()
     {
         return $this->category;
@@ -84,25 +116,15 @@ class Task
     /**
      * @param mixed $category
      */
-    public function setCategory(Categories $category = null)
+    public function setCategory($category)
     {
         $this->category = $category;
     }
 
-    public function getTaskDescription()
-    {
-        return $this->TaskDescription;
-    }
+    /**
+     * @return mixed
+     */
 
-    public function setTaskDescription($description)
-    {
-        $this->TaskDescription = $description;
-    }
-
-    public function getTags()
-    {
-        return $this->tags;
-    }
     public function __toString()
     {
         return $this->getTaskDescription();

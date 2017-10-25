@@ -28,7 +28,7 @@ class TaskType extends AbstractType
         $builder
             ->add('TaskID', HiddenType::class)
             ->add('TaskDescription', TextareaType::class)
-            ->add('category', CategoriesType::class)
+//            ->add('category', CategoriesType::class)
             ->add('submit', SubmitType::class)
             ->add('reset', ResetType::class)
             ->add('tags', CollectionType::class, array(

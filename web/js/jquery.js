@@ -1,3 +1,4 @@
+var $collectionHolder;
 // setup an "add a tag" link
 const $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
 const $newLinkLi = $('<li></li>').append($addTagLink);
@@ -35,17 +36,17 @@ function addTagForm($collectionHolder, $newLinkLi) {
 
     // get the new index
     let index = $collectionHolder.data('index');
-
+    var newForm = prototype;
     // Replace '$$name$$' in the prototype's HTML to
     // instead be a number based on how many items we have
-    let newForm = prototype.replace(/__name__/g, index);
+    newForm = newForm.replace(/__name__/g, index);
 
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
     let $newFormLi = $('<li></li>').append(newForm);
-
+    $newLinkLi.before($newFormLi);
     // also add a remove button, just for this example
     $newFormLi.append('<a href="#" class="remove-tag">x</a>');
 

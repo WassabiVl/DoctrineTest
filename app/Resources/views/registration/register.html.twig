@@ -1,13 +1,13 @@
 {# app/Resources/views/registration/register.html.twig #}
 {% extends 'base.html.twig' %}
 {% block body %}
-{{ form_start(form) }}
+    {{ form_start(form) }}
     {{ form_row(form.UserName) }}
     {{ form_row(form.UserEmail) }}
     {{ form_row(form.plainPassword.first) }}
     {{ form_row(form.plainPassword.second) }}
     {{ form_row(form.termsAccepted) }}
-
-<button type="submit">Register!</button>
-{{ form_end(form) }}
+    {{ form_row(form.submit, { 'label': 'Save' }) }}
+    {{ form_row(form.reset, { 'label': 'Reset' }) }}
+    {{ form_end(form) }}
 {% endblock %}

@@ -12,7 +12,6 @@ use AppBundle\Entity\Task;
 use AppBundle\Entity\Tag;
 use AppBundle\Form\Type\TaskType;
 use Doctrine\Common\Collections\ArrayCollection;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +22,6 @@ class TaskController extends Controller
      * @Route("/task", name="task")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Template()
      */
     public function newAction(Request $request)
     {
@@ -103,6 +101,6 @@ class TaskController extends Controller
 
         return $this->render(
             'task/new.html.twig',
-            array('form' => $form->createView())
+            array('form' => $editForm->createView())
         );    }
 }

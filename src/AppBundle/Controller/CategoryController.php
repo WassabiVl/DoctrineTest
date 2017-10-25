@@ -10,8 +10,9 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Form\CategoryType;
-use AppBundle\Entity\Category;
+use AppBundle\Form\CategoriesType;
+use AppBundle\Entity\Categories;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,8 +24,9 @@ class CategoryController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request){
-        $category = new Category();
-        $form = $this->createForm(CategoryType::class, $category);
+        $category = new Categories();
+        $form = $this->createForm(CategoriesType::class, $category)
+            ->add('submit', SubmitType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -46,14 +48,16 @@ class CategoryController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function updateAction(Category $category, Request $request)
+    public function updateAction(Categories $category, Request $request)
     {
         if (!$category) {
             throw $this->createNotFoundException(
                 'No category found for id '.$category
             );
         }
-        $form = $this->createForm(categoryType::class, $category);
+        $form = $this
+            ->createForm(CategoriesType::class, $category)
+            ->add('submit', SubmitType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -77,14 +81,14 @@ class CategoryController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction(Category $category, Request $request)
+    public function deleteAction(Categories $category, Request $request)
     {
         if (!$category) {
             throw $this->createNotFoundException(
                 'No category found for id '.$category
             );
         }
-        $form = $this->createForm(categoryType::class, $category);
+        $form = $this->createForm(CategoriesType::class, $category);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);

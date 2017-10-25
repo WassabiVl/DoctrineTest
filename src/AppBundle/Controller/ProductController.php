@@ -11,7 +11,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\ProductType;
 use AppBundle\Entity\Product;
-use AppBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,7 +53,8 @@ class ProductController extends Controller
             return $this->redirectToRoute('home');
         }
         $product->setCategoryName($product);
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this
+            ->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

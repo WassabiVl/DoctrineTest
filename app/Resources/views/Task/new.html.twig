@@ -6,16 +6,18 @@
 
 {% block body %}<div>
     {% form_theme form 'jquery.collection.html.twig' ':Task:button.html.twig' %}
-    {{ form(form) }}
-
     {{ form_start(form) }}
+
+    {{ form_widget(form) }}
     {# render the task's only field: description #}
-    {{ form_row(form.description) }}
+    {{ form_row(form.TaskID) }}
+    {{ form_row(form.TaskDescription) }}
 
     <h3>Tags</h3>
     <ul class="tags" data-prototype="{{ form_widget(form.tags.vars.prototype)|e('html_attr') }}">
         {# iterate over each existing tag and render its only field: name #}
         {% for tag in form.tags %}
+            <li>{{ form_row(tag.TagName) }}</li>
         {% endfor %}
     </ul>
 

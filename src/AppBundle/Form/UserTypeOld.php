@@ -13,6 +13,8 @@ use AppBundle\Entity\UserOld;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -29,6 +31,8 @@ class UserTypeOld extends AbstractType
             ->add('UserID', HiddenType::class)
             ->add('UserEmail', EmailType::class)
             ->add('UserName', TextType::class)
+            ->add('submit', SubmitType::class)
+            ->add('reset', ResetType::class)
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),

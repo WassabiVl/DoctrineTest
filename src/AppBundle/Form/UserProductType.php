@@ -4,11 +4,14 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
+use SebastianBergmann\GlobalState\Restorer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -34,6 +37,8 @@ class UserProductType extends AbstractType
             ])
             ->add('PurchaseDate',DateTimeType::class)
             ->add('Amount', TextType::class)
+            ->add('submit', SubmitType::class)
+            ->add('reset', ResetType::class)
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $UserProduct = $event->getData();
                 $form = $event->getForm();

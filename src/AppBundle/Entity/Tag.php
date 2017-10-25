@@ -27,13 +27,14 @@ class Tag
     /**
      * @ORM\Column(type="string")
      */
-    private $name;
+    private $TagName;
 
     /**
      * @ORM\Column(type="string")
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Task", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Task", cascade={"persist"},mappedBy="Task")
      */
     protected $tasks;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -41,7 +42,7 @@ class Tag
 
     public function getName()
     {
-        return $this->name;
+        return $this->TagName;
     }
 
     /**
@@ -62,7 +63,7 @@ class Tag
 
     public function setName($name)
     {
-        $this->name = $name;
+        $this->TagName = $name;
     }
     //multiform shit to do here
     public function addTask(Task $task)
@@ -70,5 +71,9 @@ class Tag
         if (!$this->tasks->contains($task)) {
             $this->tasks->add($task);
         }
+    }
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

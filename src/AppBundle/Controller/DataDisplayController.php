@@ -9,10 +9,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Category;
+use AppBundle\Entity\Categories;
 use AppBundle\Entity\Product;
-use AppBundle\Entity\UserOld;
 use AppBundle\Entity\UserProduct;
+use AppBundle\Entity\Task;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -35,39 +35,45 @@ class DataDisplayController extends Controller
     public function showAction()
     {
 
+
         $cache = new FilesystemCache();
-        if (!$cache->has('stats.products') or !$cache->has('stats.users') or !$cache->has('stats.userProduct') or !$cache->has('stats.Category')) {
+        if (!$cache->has('stats.products')or !$cache->has('stats.userProduct') or !$cache->has('stats.Categories') or !$cache->has('stats.Task')) {
             $product = $this->getDoctrine()
                 ->getRepository(Product::class)
                 ->findAll();
-            $users = $this->getDoctrine()
-                ->getRepository(UserOld::class)
-                ->findAll();
+            $cache->set('stats.products', $product);
+
             $userProduct = $this->getDoctrine()
                 ->getRepository(UserProduct::class)
                 ->findAll();
-            $category = $this->getDoctrine()
-                ->getRepository(Category::class)
-                ->findAll();
-            $cache->set('stats.products', $product);
-            $cache->set('stats.users', $users);
             $cache->set('stats.userProduct', $userProduct);
-            $cache->set('stats.Category', $category);}
-        else{
-            $users = $cache->get('stats.users');
-            $product = $cache->get('stats.products');
-            $userProduct = $cache->get('stats.userProduct');
-            $category = $cache->get('stats.Category');
+
+            $Categories = $this->getDoctrine()
+                ->getRepository(Categories::class)
+                ->findAll();
+            $cache->set('stats.Categories', $Categories);
+
+            $Task = $this->getDoctrine()
+                ->getRepository(Task::class)
+                ->findAll();
+            $cache->set('stats.Categories', $Task);
         }
 
-        if (!$product and !$users) {
+        else{
+            $product = $cache->get('stats.products');
+            $userProduct = $cache->get('stats.userProduct');
+            $Categories = $cache->get('stats.Categories');
+            $Task = $cache->get('stats.Task');
+        }
+
+        if (!$product and !$Categories) {
             throw $this->createNotFoundException(
                 'No product found for id ');}
 
         $cache->clear();
 
         // ... do something, like pass the $product object into a template
-        return $this->render('default/index1.html.twig', array('Products' => $product, 'Users' => $users, 'userProduct' => $userProduct, 'category' => $category));
+        return $this->render('default/index1.html.twig', array('Products' => $product, 'userProduct' => $userProduct, 'Categories' => $Categories, 'Tasks' => $Task));
 
     }
 

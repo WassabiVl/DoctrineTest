@@ -24,29 +24,28 @@
         {% endfor %}
         </tbody>
     </table>
-    <table class="border" width="30%" align="center">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody align="center">
-        {% for item in Users %}
-            <tr>
-                <td>{{ item.UserName }}</td>
-                <td>{{ item.UserEmail }}</td>
-                <td><a href="{{ path('Update', {UserId: item.UserID}) }}" >Edit</a></td>
-                <td><a href="{{ path('Delete', {UserId: item.UserID}) }}" >Delete</a></td>
-            </tr>
+    <h3>Task</h3>
+    {#<div class="category">#}
+        {#{% for Task in Tasks %}#}
+            {#<li>#}
+                {#{{ Task.category }}#}
+                {#<ol>{{ Task.tags }}</ol>#}
+            {#</li>#}
+        {#{% endfor %}#}
+    {#</div><h3>Category</h3>#}
+    <div class="category">
+        {% for Cat in Categories %}
+            <li>
+                {{ Cat.categoryID }}
+                <ol>{{ Cat.categoryName }}</ol>
+            </li>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+
+
     <div style="float:right; display: block; width:200px ">
-    <a href="{{ path('user_registration') }}" class="button">Register User</a><br>
-    <a href="{{ path('product_registration') }}" class="button">Add Product</a><br>
-    <a href="{{ path('shop') }}" class="button">Shopping Cart</a><br>
+        <a href="{{ path('user_registration') }}" class="button">Register User</a><br>
+        <a href="{{ path('product_registration') }}" class="button">Add Product</a><br>
+        <a href="{{ path('shop') }}" class="button">Shopping Cart</a><br>
     </div>
 {% endblock %}

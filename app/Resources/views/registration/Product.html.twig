@@ -5,8 +5,7 @@
     {{ form_row(form.ProductPrice) }}
     {{ form_row(form.ProductDescription) }}
     {{ form_row(form.CategoryName) }}
-
-    <button type="submit">Add Product</button>
+    {{ form_widget(form.submit, { 'label': 'Save' }) }}
+    {{ form_widget(form.reset, { 'label': 'Reset' }) }}
     {{ form_end(form) }}
-
 {% endblock %}

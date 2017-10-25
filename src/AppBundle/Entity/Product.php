@@ -56,7 +56,7 @@ class Product
 
     /**
      * @ORM\Column(type="string")
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Categories")
      */
     private $CategoryName;
 

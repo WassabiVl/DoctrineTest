@@ -1,16 +1,17 @@
-var NoteSection = React.createClass({
-    getInitialState: function() {
+import React from 'react';
+let NoteSection = React.createClass({
+    getInitialState: function () {
         return {
             notes: []
         }
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.loadNotesFromServer();
         setInterval(this.loadNotesFromServer, 2000);
     },
 
-    loadNotesFromServer: function() {
+    loadNotesFromServer: function () {
         $.ajax({
             url: this.props.url,
             success: function (data) {
@@ -19,14 +20,14 @@ var NoteSection = React.createClass({
         });
     },
 
-    render: function() {
+    render: function () {
         return (
             <div>
                 <div className="notes-container">
                     <h2 className="notes-header">Notes</h2>
                     <div><i className="fa fa-plus plus-btn"></i></div>
                 </div>
-                <NoteList notes={this.state.notes} />
+                <NoteList notes={this.state.notes}/>
             </div>
         );
     }

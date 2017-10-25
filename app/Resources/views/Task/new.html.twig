@@ -17,7 +17,7 @@
     <ul class="tags" data-prototype="{{ form_widget(form.tags.vars.prototype)|e('html_attr') }}">
         {# iterate over each existing tag and render its only field: name #}
         {% for tag in form.tags %}
-            <li>{{ form_row(tag.TagName) }}</li>
+            <li>{{ form_row(tag.name) }}</li>
         {% endfor %}
     </ul>
 

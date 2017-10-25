@@ -40,9 +40,36 @@ class Tag
         $this->tasks = new ArrayCollection();
     }
 
-    public function getName()
+    /**
+     * @return mixed
+     */
+    public function getTagID()
+    {
+        return $this->TagID;
+    }
+
+    /**
+     * @param mixed $TagID
+     */
+    public function setTagID($TagID)
+    {
+        $this->TagID = $TagID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTagName()
     {
         return $this->TagName;
+    }
+
+    /**
+     * @param mixed $TagName
+     */
+    public function setTagName($TagName)
+    {
+        $this->TagName = $TagName;
     }
 
     /**
@@ -61,10 +88,7 @@ class Tag
         $this->tasks = $tasks;
     }
 
-    public function setName($name)
-    {
-        $this->TagName = $name;
-    }
+
     //multiform shit to do here
     public function addTask(Task $task)
     {
@@ -74,6 +98,6 @@ class Tag
     }
     public function __toString()
     {
-        return $this->getName();
+        return $this->getTagName();
     }
 }

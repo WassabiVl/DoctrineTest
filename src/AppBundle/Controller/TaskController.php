@@ -9,7 +9,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Task;
-use AppBundle\Entity\Tag;
 use AppBundle\Form\Type\TaskType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,12 +28,12 @@ class TaskController extends Controller
 
         // dummy code - this is here just so that the Task has some tags
         // otherwise, this isn't an interesting example
-        $tag1 = new Tag();
-        $tag1->setName('tag1');
-        $task->getTags()->add($tag1);
-        $tag2 = new Tag();
-        $tag2->setName('tag2');
-        $task->getTags()->add($tag2);
+//        $tag1 = new Tag();
+//        $tag1->setTagName('tag1');
+//        $task->getTags()->add($tag1);
+//        $tag2 = new Tag();
+//        $tag2->setTagName('tag2');
+//        $task->getTags()->add($tag2);
         // end dummy code
 
         $form = $this->createForm(TaskType::class, $task);
